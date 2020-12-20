@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node --require @babel/register index.js"
   },
   "author": "smonn (https://smonn.se/)",
   "license": "MIT",
