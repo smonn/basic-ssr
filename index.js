@@ -4,7 +4,7 @@ import { renderToString } from "react-dom/server";
 const app = express();
 
 function App() {
-  // to avoid putting all of this in a string, we'll use JSX for html, head, body etc too
+  // To avoid putting all of this in a string, we'll use JSX for html, head, body, etc. too.
   return (
     <html lang="en">
       <head>
@@ -21,9 +21,9 @@ function App() {
 }
 
 app.get("/", (_, res) => {
-  // since we don't care about hydration here, we can safely remove the `data-reactroot` attribute
+  // Since we don't care about hydration here, we can safely remove the `data-reactroot` attribute.
   const markup = renderToString(<App />).replace(` data-reactroot=""`, "");
-  // need to set the doctype here as we can't set it using JSX
+  // We need to set the doctype here as we can't include it using JSX.
   res.send(`<!DOCTYPE html>${markup}`);
 });
 
