@@ -1,5 +1,4 @@
-import { Route } from "react-router-dom";
-import Layout from "../components/Layout";
+import { Link, Route } from "react-router-dom";
 
 export default function NotFound() {
   return (
@@ -10,9 +9,12 @@ export default function NotFound() {
         }
 
         return (
-          <Layout>
-            <h1>Not Found</h1>
-          </Layout>
+          <main>
+            <h1>Page Not Found</h1>
+            <p>
+              <Link to="/">Return to home</Link>
+            </p>
+          </main>
         );
       }}
     />
