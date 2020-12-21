@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon --require @babel/register index.js",
     "start": "node --require @babel/register index.js"
   },
   "author": "smonn (https://smonn.se/)",
@@ -16,5 +17,8 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
   }
 }
