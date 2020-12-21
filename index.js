@@ -10,7 +10,7 @@ app.get("/*", (req, res) => {
   const html = renderApp(req.url, context);
 
   if (context.url) {
-    // The URL was set, this means a redirect was triggered.
+    // This means a redirect was triggered.
     res.redirect(context.statusCode || 301, context.url);
   } else {
     if (context.statusCode) {
