@@ -12,6 +12,7 @@ export default function App() {
       <Route path="/about">
         <About />
       </Route>
+      <Route path="*" component={NotFound} />
     </Switch>
   );
 }
