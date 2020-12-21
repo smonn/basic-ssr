@@ -1,30 +1,25 @@
 import express from "express";
-import { renderToString } from "react-dom/server";
+import renderApp from "./lib/render-app";
 
 const app = express();
 
-function App() {
-  // To avoid putting all of this in a string, we'll use JSX for html, head, body, etc. too.
-  return (
-    <html lang="en">
-      <head>
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width" />
-        <meta name="description" content="Hello World" />
-        <title>Hello World</title>
-      </head>
-      <body>
-        <h1>Hello World</h1>
-      </body>
-    </html>
-  );
-}
+// This wildcard route will ensure we catch all GET requests.
+app.get("/*", (req, res) => {
+  // This context lets us track redirects and 404:s triggered by React Router.
+  const context = {};
+  const html = renderApp(req.url, context);
 
-app.get("/", (_, res) => {
-  // Since we don't care about hydration here, we can safely remove the `data-reactroot` attribute.
-  const markup = renderToString(<App />).replace(` data-reactroot=""`, "");
-  // We need to set the doctype here as we can't include it using JSX.
-  res.send(`<!DOCTYPE html>${markup}`);
+  if (context.url) {
+    // The URL was set, this means a redirect was triggered.
+    res.redirect(context.statusCode || 301, context.url);
+  } else {
+    if (context.statusCode) {
+      // This usually means we have a 404.
+      res.status(context.statusCode);
+    }
+
+    res.send(html);
+  }
 });
 
 app.listen(process.env.PORT || 3000);
