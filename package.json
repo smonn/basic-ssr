@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --require @babel/register index.js",
-    "start": "node --require @babel/register index.js"
+    "build": "babel src --out-dir dist",
+    "dev": "nodemon --require @babel/register src/index.js",
+    "start": "NODE_ENV=production node dist/index.js"
   },
   "author": "smonn (https://smonn.se/)",
   "license": "MIT",
