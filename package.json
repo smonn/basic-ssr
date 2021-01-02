@@ -3,6 +3,8 @@
   "version": "0.0.0",
   "main": "index.js",
   "scripts": {
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
     "build": "babel src --out-dir dist",
     "dev": "nodemon --require @babel/register src/index.js",
     "start": "NODE_ENV=production node dist/index.js"
@@ -21,6 +23,7 @@
     "@babel/preset-env": "^7.12.11",
     "@babel/preset-react": "^7.12.10",
     "@babel/register": "^7.12.10",
+    "cypress": "^6.2.0",
     "nodemon": "^2.0.6"
   }
 }

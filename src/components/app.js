@@ -1,18 +1,17 @@
 import { Route, Switch } from "react-router-dom";
-import Index from "../pages";
-import NotFound from "../pages/404";
-import About from "../pages/About";
+import routeConfig from "../lib/route-config";
 
 export default function App() {
   return (
     <Switch>
-      <Route path="/" exact>
-        <Index />
-      </Route>
-      <Route path="/about">
-        <About />
-      </Route>
-      <Route path="*" component={NotFound} />
+      {routeConfig.map((route) => (
+        <Route
+          key={route.path}
+          path={route.path}
+          component={route.component}
+          exact={route.exact}
+        />
+      ))}
     </Switch>
   );
 }
